@@ -4,6 +4,15 @@ using namespace std;
 
 int main(){	
 
+	double loan,rate,pay;
+	cout << "Enter initial loan: ";
+	cin >> loan;
+	cout << "Enter interest rate per year (%): ";
+	cin >> rate;
+	cout << "Enter amount you can pay per year: ";
+	cin >> pay;
+	
+
 	//use 'setw' to set width of table and 'left' to set left-alignment
 	//you can change input argument of 'setw()' to see the effect
 	//Try to change from 'left' to 'right' and see the effect
@@ -14,17 +23,58 @@ int main(){
 	cout << setw(13) << left << "Payment";
 	cout << setw(13) << left << "NewBalance";
 	cout << "\n";
+
 	
 	//use 'fixed' and 'setprecision' to fix the number of decimal digits for displaying
 	//you can change input argument of 'setprecision()' to see the effect
-	cout << fixed << setprecision(2); 
+	/*cout << fixed << setprecision(2); 
 	cout << setw(13) << left << 1; 
 	cout << setw(13) << left << 1000.0;
 	cout << setw(13) << left << 50.0;
 	cout << setw(13) << left << 1050.0;
 	cout << setw(13) << left << 100.0;
 	cout << setw(13) << left << 950.0;
-	cout << "\n";	
+	cout << "\n";*/
+	double total,rate2,newba;
+	total = (loan*rate)/100 + loan;
+	rate2 = loan*rate/100;
+	newba = total-pay;
+	if(pay>total){
+		pay = total;
+		newba = pay - total;
+	}
+	cout << fixed << setprecision(2); 
+	cout << setw(13) << left << 1; 
+	cout << setw(13) << left << loan;
+	cout << setw(13) << left << rate2;
+	cout << setw(13) << left << total;
+	cout << setw(13) << left << pay;
+	cout << setw(13) << left << newba;
+	cout << "\n";
+
+	int i =2;
+	while(newba > 0){
+		loan = newba;
+		total = (loan*rate)/100 + loan;
+		rate2 = loan*rate/100;
+		newba = total-pay;
+		if(total < pay){
+			pay = total;
+			newba = total - pay;
+		}
+		cout << fixed << setprecision(2); 
+		cout << setw(13) << left << i++; 
+		cout << setw(13) << left << loan;
+		cout << setw(13) << left << rate2;
+		cout << setw(13) << left << total;
+		cout << setw(13) << left << pay;
+		cout << setw(13) << left << newba;
+		cout << "\n";
+		
+	}
+	
+	
+	
 	
 	return 0;
 }
